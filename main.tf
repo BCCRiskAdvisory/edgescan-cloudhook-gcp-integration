@@ -1,6 +1,14 @@
 // Enable all the APIs
+locals {
+  gcp_service_list = [
+    "compute.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "dns.googleapis.com"
+  ]
+}
+
 resource "google_project_service" "enable_apis" {
-  for_each = toset(var.gcp_service_list)
+  for_each = toset(local.gcp_service_list)
   service  = each.key
 }
 
@@ -12,23 +20,14 @@ resource "google_service_account" "service_account" {
 }
 
 // Add roles to service account
-resource "google_project_iam_binding" "add_network_viewer_role" {
+resource "google_project_iam_member" "add_network_viewer_role" {
   project = var.project_id
   role    = "roles/compute.networkViewer"
-  members = [
-    "serviceAccount:${google_service_account.service_account.email}",
-  ]
+  member  = "serviceAccount:${google_service_account.service_account.email}"
 }
 
-resource "google_project_iam_binding" "add_dns_reader_role" {
+resource "google_project_iam_member" "add_dns_reader_role" {
   project = var.project_id
   role    = "roles/dns.reader"
-  members = [
-    "serviceAccount:${google_service_account.service_account.email}",
-  ]
-}
-
-// Create key 
-resource "google_service_account_key" "key_file" {
-  service_account_id = google_service_account.service_account.name
+  member  = "serviceAccount:${google_service_account.service_account.email}"
 }

@@ -1,9 +1,6 @@
 # Local .terraform directories
 **/.terraform/*
 
-# Local .infracost directories
-**/.infracost/*
-
 # .tfstate files
 *.tfstate
 *.tfstate.*
@@ -29,7 +26,3 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
-
-# Ignore codedeploy files
-appspec*
-deployment.json
