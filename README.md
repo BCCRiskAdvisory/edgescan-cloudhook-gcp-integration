@@ -13,7 +13,7 @@ This Terraform Template will:
 	- Compute Network Viewer
 	- DNS Reader
 
-- Output a JSON keyfile for this IAM Service Account.
+The JSON keyfile for this IAM Service Account will need to be created manually.
 
 ## Prerequisites
 
@@ -49,4 +49,9 @@ template apply -var="account_name=<your custom name>"
 
 4. Once provided, it will list the GCP resources that will be created, and prompt you to apply these changes with 'yes'.
 
-5. At the end of the terraform apply, the **json_key_file** will be listed. Take note of the output and provide it to edgescan.
+5. After the command has finished:
+	- Navigate to `https://console.cloud.google.com/iam-admin/serviceaccounts?project=<GCP PROJECT ID>`
+	- Select the newly created service account
+	- Click `KEYS -> ADD KEY -> Create new key`
+	- Make sure JSON is selected and click `CREATE`
+	- Save the JSON file and provide it to edgescan (**NOTE**: For security reasons, it is recommended to send the file using a service such as [SendSafely](https://www.sendsafely.com/), and to ensure the file is deleted after it has been sent)
