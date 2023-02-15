@@ -13,7 +13,7 @@ This Terraform Template will:
 	- Compute Network Viewer
 	- DNS Reader
 
-The JSON keyfile for this IAM Service Account will need to be cerated manually.
+The JSON keyfile for this IAM Service Account will need to be created manually.
 
 ## Prerequisites
 
@@ -54,4 +54,4 @@ template apply -var="account_name=<your custom name>"
 	- Select the newly created service account
 	- Click `KEYS -> ADD KEY -> Create new key`
 	- Make sure JSON is selected and click `CREATE`
-	- Save the JSON file and provide it to edgescan
+	- Save the JSON file and provide it to edgescan (**NOTE**: For security reasons, it is recommended to send the file using a service such as [SendSafely](https://www.sendsafely.com/), and to ensure the file is deleted after it has been sent)
